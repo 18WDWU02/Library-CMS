@@ -1,5 +1,5 @@
 <?php
-    require 'templates/header.php';
+    require '../templates/header.php';
  ?>
  <div class="container">
      <div class="row mb-2">
@@ -35,4 +35,4 @@
  </div>
 
 
-<?php require 'templates/footer.php' ?>
+<?php require '../templates/footer.php' ?>
