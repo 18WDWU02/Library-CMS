@@ -69,18 +69,18 @@
             $result = mysqli_query($dbc, $sql);
             if( $result && mysqli_affected_rows($dbc) > 0 ){
 
-                $destination = "images/uploads";
+                $destination = "../images/uploads";
                 if(! is_dir($destination) ){
-                    mkdir("images/uploads/", 0777, true);
+                    mkdir("../images/uploads/", 0777, true);
                 }
                 // move_uploaded_file($fileTmp, $destination."/".$newFileName);
                 $manager = new ImageManager();
                 $mainImage = $manager->make($fileTmp);
                 $mainImage->save($destination."/".$newFileName, 100);
                 $thumbnailImage = $manager->make($fileTmp);
-                $thumbDestination = "images/uploads/thumbnails";
+                $thumbDestination = "../images/uploads/thumbnails";
                 if(! is_dir($thumbDestination)){
-                    mkdir("images/uploads/thumbnails/", 0777, true);
+                    mkdir("../images/uploads/thumbnails/", 0777, true);
                 }
                 $thumbnailImage->resize(300, null, function($constraint){
                     $constraint->aspectRatio();
