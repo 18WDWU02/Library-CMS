@@ -10,8 +10,8 @@
 
      <div class="row mb-2">
          <div class="col">
-             <a class="btn btn-outline-primary" href="update.php">Edit</a>
-             <a class="btn btn-outline-danger" href="confirm_delete.php">Delete</a>
+             <a class="btn btn-outline-primary" href="./books/update.php">Edit</a>
+             <a class="btn btn-outline-danger" href="./books/confirm_delete.php">Delete</a>
          </div>
      </div>
 

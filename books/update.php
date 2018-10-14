@@ -1,5 +1,5 @@
 <?php
-    require 'templates/header.php';
+    require '../templates/header.php';
  ?>
  <div class="container">
      <div class="row mb-2">
@@ -10,7 +10,7 @@
 
      <div class="row mb-2">
          <div class="col">
-             <form action="update.php" method="post" enctype="multipart/form-data">
+             <form action="./books/update.php" method="post" enctype="multipart/form-data">
                  <div class="form-group">
                    <label for="title">Book Title</label>
                    <input type="text" class="form-control"  placeholder="Enter book title" value="Harry Potter and the Philosopher's Stone">
@@ -40,4 +40,4 @@
  </div>
 
 
-<?php require 'templates/footer.php' ?>
+<?php require '../templates/footer.php' ?>
