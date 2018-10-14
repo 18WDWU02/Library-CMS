@@ -1,6 +1,6 @@
 <?php
+    require '../templates/header.php';
 
-    require 'vendor/autoload.php';
     // import the Intervention Image Manager Class
     use Intervention\Image\ImageManager;
 
@@ -54,31 +54,49 @@
         }
 
         if(empty($errors)){
-            $destination = "images/uploads";
-            if(! is_dir($destination) ){
-                mkdir("images/uploads/", 0777, true);
-            }
-            $newFileName = uniqid() .".".  $fileExt;
-            // move_uploaded_file($fileTmp, $destination."/".$newFileName);
-            $manager = new ImageManager();
-            $mainImage = $manager->make($fileTmp);
-            $mainImage->save($destination."/".$newFileName, 100);
-            $thumbnailImage = $manager->make($fileTmp);
-            $thumbDestination = "images/uploads/thumbnails";
-            if(! is_dir($thumbDestination)){
-                mkdir("images/uploads/thumbnails/", 0777, true);
-            }
-            $thumbnailImage->resize(300, null, function($constraint){
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-            $thumbnailImage->save($thumbDestination."/".$newFileName, 100);
 
-            header("Location: book.php");
+            $title = mysqli_real_escape_string($dbc, $title);
+            $author = mysqli_real_escape_string($dbc, $author);
+            $description = mysqli_real_escape_string($dbc, $description);
+
+            $newFileName = uniqid() .".".  $fileExt;
+            $filename = mysqli_real_escape_string($dbc, $newFileName);
+
+            $sql = "INSERT INTO `books`(`book_name`, `author`, `description`, `image_name`) VALUES ('$title','$author','$description','$filename')";
+
+            // die($sql);
+
+            $result = mysqli_query($dbc, $sql);
+            if( $result && mysqli_affected_rows($dbc) > 0 ){
+
+                $destination = "images/uploads";
+                if(! is_dir($destination) ){
+                    mkdir("images/uploads/", 0777, true);
+                }
+                // move_uploaded_file($fileTmp, $destination."/".$newFileName);
+                $manager = new ImageManager();
+                $mainImage = $manager->make($fileTmp);
+                $mainImage->save($destination."/".$newFileName, 100);
+                $thumbnailImage = $manager->make($fileTmp);
+                $thumbDestination = "images/uploads/thumbnails";
+                if(! is_dir($thumbDestination)){
+                    mkdir("images/uploads/thumbnails/", 0777, true);
+                }
+                $thumbnailImage->resize(300, null, function($constraint){
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+                $thumbnailImage->save($thumbDestination."/".$newFileName, 100);
+
+                header("Location: book.php");
+
+            } else {
+                die("Something went wrong, can't add the entry into the database");
+            }
+
         }
     }
 
-    require 'templates/header.php';
  ?>
  <div class="container">
      <div class="row mb-2">
@@ -102,7 +120,7 @@
 
      <div class="row mb-2">
          <div class="col">
-             <form action="add.php" method="post" enctype="multipart/form-data">
+             <form action="./books/add.php" method="post" enctype="multipart/form-data">
                  <div class="form-group">
                    <label for="title">Book Title</label>
                    <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="<?php if(isset($_POST['title'])){ echo $_POST['title']; } ?>">
@@ -131,4 +149,4 @@
  </div>
 
 
-<?php require 'templates/footer.php' ?>
+<?php require '../templates/footer.php' ?>

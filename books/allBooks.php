@@ -10,7 +10,7 @@
 
      <div class="row mb-2">
          <div class="col">
-             <a class="btn btn-outline-primary" href="add.php">Add new Book</a>
+             <a class="btn btn-outline-primary" href="./books/add.php">Add new Book</a>
          </div>
      </div>
 
