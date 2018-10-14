@@ -3,12 +3,9 @@
 This site will be a full functional Content Management System for a small Library.
 It will be able to view the books in them, add new ones, edit existing books as well as delete them.
 
-## Tasks
-Here are all the tasks given in these lessons. They will all be individually listed in the [task folder in the repo ](https://github.com/18WDWU02/Library-CMS/tree/master/tasks), but all listed bellow.
+## Task
 
-Do these tasks either on this repo, or on a new project you have created (a portfolio is a great project to use this on).
-
-#### Task 1
+**Task 1**
 Create a basic website which just includes a few pages. What we are including are
 - index.html (the home page of the site)
 - books/allBooks.html (a list of all the books)
@@ -30,11 +27,3 @@ Create a basic website which just includes a few pages. What we are including ar
    - description - text, max car 1000
    - Image - jpg, png (name of the file including extension cant be more than 20 characters)
 5. Add image intervention to be able to crop the images to suit your design.
-
-#### Task 2
-Using the an insert query, create a new section which can be added onto the site, ie. movies, music, etc.
-1. Create the necessary pages for adding
-2. Validate the form, including any inputs
-3. Write the sql query (take the example from phpmyadmin and then work backwards)
-4. Test the query in phpmyadmin before allowing the form to completely finish
-5. Once query is successful and the form submits properly, redirect the form to a page which will be the single page
