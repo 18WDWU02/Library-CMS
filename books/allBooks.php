@@ -1,5 +1,15 @@
 <?php
     require '../templates/header.php';
+
+    $sql = "SELECT `id`, `book_name`, `image_name` FROM `books` WHERE 1";
+    $result = mysqli_query($dbc, $sql);
+    if($result){
+        $allBooks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        die("ERROR: something went wrong, cannot get the books");
+    }
+
+
  ?>
  <div class="container">
      <div class="row mb-2">
@@ -15,63 +25,32 @@
      </div>
 
      <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="./books/book.php" class="btn btn-sm btn-outline-info">View</a>
-                            <a href="./booksupdate.php" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <?php if($allBooks): ?>
 
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="./books/book.php" class="btn btn-sm btn-outline-info">View</a>
-                            <a href="./booksupdate.php" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="./books/book.php" class="btn btn-sm btn-outline-info">View</a>
-                            <a href="./booksupdate.php" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="./books/book.php" class="btn btn-sm btn-outline-info">View</a>
-                            <a href="./booksupdate.php" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+              <?php foreach($allBooks as $singleBook): ?>
+                  <div class="col-md-4">
+                      <div class="card mb-4 shadow-sm">
+                          <img class="card-img-top" src="./images/uploads/thumbnails/<?= $singleBook['image_name']; ?>" alt="Card image cap">
+                          <div class="card-body">
+                              <p class="card-text"><?= $singleBook['book_name'];  ?></p>
+                              <div class="d-flex justify-content-between align-items-center">
+                                  <div class="btn-group">
+                                      <a href="./books/book.php?id=<?= $singleBook['id']; ?>" class="btn btn-sm btn-outline-info">View</a>
+                                      <a href="./books/update.php" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              <?php endforeach; ?>
+
+          <?php else: ?>
+              <div class="col">
+                  <p>Sorry, there aren't any books in the library at the moment.</p>
+              </div>
+          <?php endif; ?>
+
+
     </div>
 
 

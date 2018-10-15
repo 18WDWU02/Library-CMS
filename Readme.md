@@ -38,3 +38,11 @@ Using the an insert query, create a new section which can be added onto the site
 3. Write the sql query (take the example from phpmyadmin and then work backwards)
 4. Test the query in phpmyadmin before allowing the form to completely finish
 5. Once query is successful and the form submits properly, redirect the form to a page which will be the single page
+
+#### Task 3
+Using the select query, view the entires which you created in the previous task.
+1. View them all on one single page
+2. View them individually from a single php page which filters which one you see based on your url
+3. Create an error 404 page incase someone asks for an entry which doesn't exist
+**Extra Tasks**
+Create more complex queries like getting the latest entry, getting the smallest, largest etc.

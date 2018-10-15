@@ -68,6 +68,7 @@
 
             $result = mysqli_query($dbc, $sql);
             if( $result && mysqli_affected_rows($dbc) > 0 ){
+                $lastID = $dbc->insert_id;
 
                 $destination = "../images/uploads";
                 if(! is_dir($destination) ){
@@ -88,7 +89,10 @@
                 });
                 $thumbnailImage->save($thumbDestination."/".$newFileName, 100);
 
-                header("Location: book.php");
+
+
+
+                header("Location: book.php?id=$lastID");
 
             } else {
                 die("Something went wrong, can't add the entry into the database");
