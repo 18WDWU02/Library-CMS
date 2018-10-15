@@ -1,7 +1,4 @@
 <?php
-
-
-
     if(is_dir('vendor')){
         require 'vendor/autoload.php';
     } else {
@@ -38,7 +35,7 @@
                         <a class="text-light" href="#">Subscribe</a>
                     </div>
                     <div class="col-6 text-center">
-                        <a class="blog-header-logo text-light" href="#">Yoobee School of Design Library</a>
+                        <a class="blog-header-logo text-light" href="./">Yoobee School of Design Library</a>
                     </div>
                     <div class="col-3 d-flex justify-content-end align-items-center">
                         <a class="text-light" href="#">

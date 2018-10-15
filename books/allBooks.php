@@ -30,13 +30,13 @@
               <?php foreach($allBooks as $singleBook): ?>
                   <div class="col-md-4">
                       <div class="card mb-4 shadow-sm">
-                          <img class="card-img-top" src="./images/uploads/thumbnails/<?= $singleBook['image_name']; ?>" alt="Card image cap">
+                          <img class="card-img-top" src="./images/uploads/medium/<?= $singleBook['image_name']; ?>" alt="Card image cap">
                           <div class="card-body">
                               <p class="card-text"><?= $singleBook['book_name'];  ?></p>
                               <div class="d-flex justify-content-between align-items-center">
                                   <div class="btn-group">
                                       <a href="./books/book.php?id=<?= $singleBook['id']; ?>" class="btn btn-sm btn-outline-info">View</a>
-                                      <a href="./books/update.php" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                      <a href="./books/update.php?id=<?= $singleBook['id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                                   </div>
                               </div>
                           </div>

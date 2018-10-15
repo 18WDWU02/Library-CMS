@@ -47,4 +47,5 @@ Using the select query, view the entires which you created in the previous task.
 4. Add the select query to the update page to be able to see the information which you are updating, based on the entry you are requesting
 
 **Extra Tasks**
+
 Create more complex queries like getting the latest entry, getting the smallest, largest etc.

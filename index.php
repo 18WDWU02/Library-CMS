@@ -6,9 +6,8 @@
     $result = mysqli_query($dbc, $sql);
     if($result && mysqli_affected_rows($dbc) > 0){
         $latestBook = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    } else {
-        die("ERROR, cannot get the data requested");
     }
+
  ?>
 
  <div class="container">
@@ -21,7 +20,7 @@
     </div>
 
     <div class="row mb-2">
-        <?php if($latestBook): ?>
+        <?php if(isset($latestBook)): ?>
             <div class="col-md-6">
                 <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                     <div class="card-body d-flex flex-column align-items-start">
@@ -33,7 +32,7 @@
                         <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                         <a href="./books/book.php?id=<?= $latestBook['id']; ?>">Continue reading</a>
                     </div>
-                    <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
+                    <img class="card-img-right flex-auto d-none d-lg-block" src="./images/uploads/thumbnails/<?= $latestBook['image_name']; ?>" alt="Card image cap">
                 </div>
             </div>
         <?php endif; ?>
