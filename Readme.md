@@ -1,7 +1,26 @@
 # Library CMS Project
-
 This site will be a full functional Content Management System for a small Library.
 It will be able to view the books in them, add new ones, edit existing books as well as delete them.
+
+## Set Up
+```bash
+# Clone the repo
+git clone https://github.com/18WDWU02/Library-CMS.git
+cd Library-CMS
+# Install the dependancies
+composer install
+```
+Create a .env file in your root directory. An example has been given of what the variable names need to be.
+
+PROJECT_URL= URL TO ROOT DIRECTORY
+DB_HOST= DATABASE HOST
+DB_USER= DATABASE USERNAME
+DB_PASS= DATABASE PASSWORD
+DB_TABLE= DATABASE TABLE NAME
+
+A copy of the database is included in the repo (library.sql).
+It doesn't matter what your database name is, as long as you put the right one in the .env file
+
 
 ## Tasks
 Here are all the tasks given in these lessons. They will all be individually listed in the [task folder in the repo ](https://github.com/18WDWU02/Library-CMS/tree/master/tasks), but all listed bellow.
@@ -47,5 +66,10 @@ Using the select query, view the entires which you created in the previous task.
 4. Add the select query to the update page to be able to see the information which you are updating, based on the entry you are requesting
 
 **Extra Tasks**
-
 Create more complex queries like getting the latest entry, getting the smallest, largest etc.
+
+#### Task 4
+Using the update query, create a new form which will update existing entries in your database
+1. Make sure you are still validating the form, even though the data is there on the load, people can still edit it to fail validation
+2. If there is something which the user doesn't need to change, then make sure to include the validation if they do change it
+3. Remove any references of the old entry from your project ie. old images, files
