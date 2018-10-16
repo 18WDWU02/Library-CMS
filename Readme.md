@@ -12,11 +12,11 @@ composer install
 ```
 Create a .env file in your root directory. An example has been given of what the variable names need to be.
 
-PROJECT_URL= URL TO ROOT DIRECTORY
-DB_HOST= DATABASE HOST
-DB_USER= DATABASE USERNAME
-DB_PASS= DATABASE PASSWORD
-DB_TABLE= DATABASE TABLE NAME
+PROJECT_URL= URL TO ROOT DIRECTORY<br />
+DB_HOST= DATABASE HOST<br />
+DB_USER= DATABASE USERNAME<br />
+DB_PASS= DATABASE PASSWORD<br />
+DB_TABLE= DATABASE TABLE NAME<br />
 
 A copy of the database is included in the repo (library.sql).
 It doesn't matter what your database name is, as long as you put the right one in the .env file
