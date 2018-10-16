@@ -95,7 +95,7 @@
                 if(! is_dir($mediumDestination)){
                     mkdir("../images/uploads/medium/", 0777, true);
                 }
-                $mediumImage->resize(300, null, function($constraint){
+                $mediumImage->resize(null, 380, function($constraint){
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });

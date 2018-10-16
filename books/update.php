@@ -121,6 +121,7 @@
                         $constraint->upsize();
                     });
                     $mediumImage->save($mediumDestination."/".$newFileName, 100);
+
                 }
                 header("Location: book.php?id=$id");
             } else {

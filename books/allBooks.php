@@ -28,7 +28,7 @@
           <?php if($allBooks): ?>
 
               <?php foreach($allBooks as $singleBook): ?>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                       <div class="card mb-4 shadow-sm">
                           <img class="card-img-top" src="./images/uploads/medium/<?= $singleBook['image_name']; ?>" alt="Card image cap">
                           <div class="card-body">

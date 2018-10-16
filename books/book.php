@@ -33,7 +33,7 @@
 
      <div class="row mb-2">
         <div class="col-xs-12 col-sm-4 align-self-center">
-            <img class="img-fluid" src="./images/uploads/medium/<?= $singleBook['image_name']; ?>" alt="Card image cap">
+            <img class="img-fluid" src="./images/uploads/<?= $singleBook['image_name']; ?>" alt="Card image cap">
         </div>
         <div class="col-xs-12 col-sm-8 align-self-center">
             <h3><?= $singleBook['book_name']; ?></h3>
