@@ -120,7 +120,7 @@
      <?php if($_POST && !empty($errors)): ?>
          <div class="row mb-2">
              <div class="col">
-                 <div class="alert alert-danger" role="alert">
+                 <div class="alert alert-danger pb-0" role="alert">
                      <ul>
                          <?php foreach($errors as $singleError): ?>
                              <li><?= $singleError; ?></li>
