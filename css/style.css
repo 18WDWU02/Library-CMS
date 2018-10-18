@@ -16,3 +16,28 @@
 .blog-header-logo:hover {
     text-decoration: none;
 }
+
+.author-group{
+    position: relative;
+}
+
+#autocomplete-authors{
+    display: none;
+    height: auto;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 99;
+}
+
+#autocomplete-authors div{
+    padding: 10px;
+    cursor: pointer;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+#autocomplete-authors div:hover{
+    background-color: grey;
+}

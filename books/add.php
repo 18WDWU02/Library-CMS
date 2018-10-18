@@ -1,6 +1,5 @@
 <?php
     require '../templates/header.php';
-
     // import the Intervention Image Manager Class
     use Intervention\Image\ImageManager;
 
@@ -139,9 +138,13 @@
                    <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="<?php if(isset($_POST['title'])){ echo $_POST['title']; } ?>">
                  </div>
 
-                 <div class="form-group">
+                 <div class="form-group author-group">
                    <label for="author">Author</label>
-                   <input type="text" class="form-control"  name="author" placeholder="Enter books author" value="<?php if(isset($_POST['author'])){ echo $_POST['author']; } ?>">
+                   <input type="text" autocomplete="off" class="form-control"  name="author" placeholder="Enter books author" value="<?php if(isset($_POST['author'])){ echo $_POST['author']; } ?>">
+                   <input type="hidden" name="authorID" value="">
+                   <div id="autocomplete-authors">
+
+                   </div>
                  </div>
 
                  <div class="form-group">
