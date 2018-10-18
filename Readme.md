@@ -73,3 +73,22 @@ Using the update query, create a new form which will update existing entries in 
 1. Make sure you are still validating the form, even though the data is there on the load, people can still edit it to fail validation
 2. If there is something which the user doesn't need to change, then make sure to include the validation if they do change it
 3. Remove any references of the old entry from your project ie. old images, files
+
+
+#### Task 5
+Using the delete query, add the ability to delete entries from the database
+1. Create a confirm delete page just incase the users press the button by accident. This page should be linked to the book the user clicks on
+2. Delete any images that are linked to this entry as well
+
+### Updates to the site
+We have now finished with the main part of CRUD. We have made a few more edits onto the database so you will need to include the new .sql file which has been provided (you will have to delete your old table if you want to import the new ones)
+<br />
+What has been added is a authors table which will include a list of all the authors which people have included. This will help for preventing anyone from having to add the same author in multiple times. We have also edited the books table to not have the authors name, but rather the ID of the author which is in the authors table. There is also a relationship between the two tables to say what book belongs to what author.
+
+You will have to do edits throughout the entire project to make sure that things now match up to the new way the database is asking for the books and authors
+
+#### Task 6
+1. Rewrite our add query to suit our new way of adding authors
+2. Edit the update file to match the add
+3. Create a page which has a list of all the authors
+4. Click on each individual author and view all the books which they have made

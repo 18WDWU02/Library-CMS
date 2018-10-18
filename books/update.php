@@ -5,7 +5,14 @@
     use Intervention\Image\ImageManager;
 
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `books` WHERE id = $id";
+    // $sql = "SELECT * FROM `books` WHERE id = $id";
+
+    $sql = "SELECT books.id as bookID, book_name, description, image_name";
+    $sql .= ", authors.id as authorID, author_name as author ";
+    $sql .= "FROM books ";
+    $sql .= "INNER JOIN authors ON books.author_id = authors.id ";
+    $sql .= "WHERE books.id = $id";
+
     $result = mysqli_query($dbc, $sql);
 
     if($result && mysqli_affected_rows($dbc) > 0){
@@ -73,7 +80,17 @@
             $author = mysqli_real_escape_string($dbc, $author);
             $description = mysqli_real_escape_string($dbc, $description);
 
-            $sql = "UPDATE `books` SET `book_name`='$title',`author`='$author',`description`='$description'";
+            if($authorID == 0){
+                $sql = "INSERT INTO `authors`(`author_name`) VALUES ('$author')";
+                $result = mysqli_query($dbc, $sql);
+                if( $result && mysqli_affected_rows($dbc) > 0 ){
+                    $authorID = $dbc->insert_id;
+                } else {
+                    die("Something went wrong with adding the author");
+                }
+            }
+
+            $sql = "UPDATE `books` SET `book_name`='$title',`author_id`='$authorID',`description`='$description'";
 
             if( file_exists($_FILES["image"]["tmp_name"]) ){
                 $newFileName = uniqid() .".".  $fileExt;
@@ -128,12 +145,6 @@
                 die("ERROR: Something went wrong, can't update this entry");
             }
         }
-
-
-
-
-
-
     }
 
  ?>
@@ -158,15 +169,19 @@
      <?php endif; ?>
      <div class="row mb-2">
          <div class="col">
-             <form action="./books/update.php?id=<?= $singleBook['id']; ?>" method="post" enctype="multipart/form-data">
+             <form action="./books/update.php?id=<?= $singleBook['bookID']; ?>" method="post" enctype="multipart/form-data">
                  <div class="form-group">
                    <label for="title">Book Title</label>
                    <input type="text" class="form-control"  placeholder="Enter book title" name="title" value="<?php if($_POST){ echo $_POST['title']; } else { echo $singleBook['book_name'];} ?>">
                  </div>
 
-                 <div class="form-group">
+                 <div class="form-group author-group">
                    <label for="author">Author</label>
                    <input type="text" class="form-control"  placeholder="Enter books author" name="author" value="<?php if($_POST){ echo $_POST['author']; } else { echo $singleBook['author']; } ?>">
+                   <input type="hidden" name="authorID" value="<?=  $singleBook['authorID']; ?>">
+                   <div id="autocomplete-authors">
+
+                   </div>
                  </div>
 
                  <div class="form-group">

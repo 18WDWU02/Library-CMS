@@ -53,7 +53,6 @@
         }
 
         if(empty($errors)){
-
             $title = mysqli_real_escape_string($dbc, $title);
             $author = mysqli_real_escape_string($dbc, $author);
             $description = mysqli_real_escape_string($dbc, $description);
@@ -61,9 +60,17 @@
             $newFileName = uniqid() .".".  $fileExt;
             $filename = mysqli_real_escape_string($dbc, $newFileName);
 
-            $sql = "INSERT INTO `books`(`book_name`, `author`, `description`, `image_name`) VALUES ('$title','$author','$description','$filename')";
+            if($authorID == 0){
+                $sql = "INSERT INTO `authors`(`author_name`) VALUES ('$author')";
+                $result = mysqli_query($dbc, $sql);
+                if( $result && mysqli_affected_rows($dbc) > 0 ){
+                    $authorID = $dbc->insert_id;
+                } else {
+                    die("Something went wrong with adding the author");
+                }
+            }
 
-            // die($sql);
+            $sql = "INSERT INTO `books`(`book_name`, `author_id`, `description`, `image_name`) VALUES ('$title','$authorID','$description','$filename')";
 
             $result = mysqli_query($dbc, $sql);
             if( $result && mysqli_affected_rows($dbc) > 0 ){
@@ -132,7 +139,7 @@
 
      <div class="row mb-2">
          <div class="col">
-             <form action="./books/add.php" method="post" enctype="multipart/form-data">
+             <form action="./books/add.php" method="post" enctype="multipart/form-data" autocomplete="off">
                  <div class="form-group">
                    <label for="title">Book Title</label>
                    <input type="text" class="form-control" name="title"  placeholder="Enter book title" value="<?php if(isset($_POST['title'])){ echo $_POST['title']; } ?>">

@@ -41,3 +41,6 @@
 #autocomplete-authors div:hover{
     background-color: grey;
 }
+
+.form-inline{
+    display: inline;
