@@ -10,4 +10,6 @@
         die("ERROR, connection couldn't be made, Please check your enviroment files and include the right host, username, password and table.");
     }
 
+    ob_start();
+    session_start();
  ?>

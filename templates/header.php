@@ -37,12 +37,21 @@
                     <div class="col-6 text-center">
                         <a class="blog-header-logo text-light" href="./">Yoobee School of Design Library</a>
                     </div>
-                    <div class="col-3 d-flex justify-content-end align-items-center">
-                        <a class="text-light" href="#">
-                            <i class="fas fa-search mx-3"></i>
-                        </a>
-                        <a class="btn btn-sm btn-outline-light" href="./auth/login.php">Sign up</a>
-                    </div>
+
+                        <div class="col-3 d-flex justify-content-end align-items-center">
+                            <a class="text-light" href="#">
+                                <i class="fas fa-search mx-3"></i>
+                            </a>
+                            <?php if(isset($_SESSION['valid'])): ?>
+                                <a class="btn btn-sm btn-outline-light" href="./"><?= $_SESSION['username'];  ?></a>
+                                <a class="btn btn-sm btn-outline-light" href="./auth/logout.php">Logout</a>
+                            <?php else: ?>
+                                <a class="btn btn-sm btn-outline-light" href="./auth/login.php">Sign up</a>
+                            <?php endif; ?>
+                        </div>
+
+
+
                 </div>
             </div>
         </header>

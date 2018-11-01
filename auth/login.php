@@ -1,5 +1,31 @@
 <?php
     require '../templates/header.php';
+
+    if($_POST){
+        extract($_POST);
+        $errors = array();
+
+        // validation
+
+        if(empty($errors)){
+            $sql = "SELECT * FROM `users` WHERE username = '$username'";
+            $result = mysqli_query($dbc, $sql);
+            if($result && mysqli_affected_rows($dbc) > 0){
+                $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                if(password_verify($password, $user['password'])){
+                    $_SESSION['valid'] = true;
+                    $_SESSION['timeout'] = time();
+                    $_SESSION['username'] = $user['username'];
+                    header("Location:../index.php");
+                } else {
+                    array_push($errors, "Incorrect username or password");
+                }
+            } else {
+                array_push($errors, "Sorry there is no username matching that request");
+            }
+
+        }
+    }
  ?>
 
  <div class="container py-5">

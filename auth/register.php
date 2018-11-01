@@ -1,5 +1,40 @@
 <?php
     require '../templates/header.php';
+
+    if($_POST){
+        extract($_POST);
+        $errors = array();
+
+        //validation
+        //We need to write an sql query to check to see if the username Email are already there
+
+        if(empty($errors)){
+            $name = mysqli_real_escape_string($dbc, $name);
+            $username = mysqli_real_escape_string($dbc, $username);
+            $email = mysqli_real_escape_string($dbc, $email);
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO `users` VALUES (NULL, '$name', '$username', '$email', '$hashedPassword')";
+            $result = mysqli_query($dbc, $sql);
+            if($result && mysqli_affected_rows($dbc) > 0){
+                header("Location: ../index.php");
+            } else {
+                array_push($errors, 'Something went wrong, Cannot register user at this time');
+            }
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
  ?>
 
  <div class="container py-5">
